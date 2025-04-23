@@ -5,17 +5,23 @@
   <title>Playlist 1 - Spotify Playlist Manager</title>
   <style>
     body {
-      font-family: sans-serif;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
       margin: 0;
       padding: 0;
+      background-color: #006400;
+      color: #ffffff;
+      margin-left: 200px;
+    }
+    .header {
+      width: 50%;
     }
     header, nav {
-      background-color: #1DB954;
-      color: white;
+      background-color: #228B22;
+      color: rgb(255, 255, 255);
       padding: 1rem;
     }
     nav a {
-      color: white;
+      color: #fae6fa;
       margin-right: 1rem;
       text-decoration: none;
     }
@@ -33,14 +39,34 @@
       text-align: left;
     }
     th {
-      background-color: #f4f4f4;
+      background-color: #228B22;
+    }
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: 170px;
+      background-color: #228B22;
+      padding: 1rem;
+    }
+    .sidebar a {
+      display: block;
+      color: #E6E6FA;
+      margin-bottom: 1rem;
+      text-decoration: none;
     }
   </style>
 </head>
 <body>
+  <aside class="sidebar">
+    <a href="index.html">Home</a>
+    <a href="playlist1.html">Playlist 1</a>
+  </aside>
   <header>
+    <!-- Make this a list -->
     <img src="spotifylogo.png" alt="Spotify Logo" width="100" />
-    <h1>Spotify Playlist Manager</h1>
+    <h1>Spotify Playlist Manager</h1> 
   </header>
 
   <nav>

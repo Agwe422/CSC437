@@ -1,56 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>My Spotify Playlist Manager (Proof of Concept)</title>
-  <style>
-    body {
-      font-family: sans-serif;
-      margin: 0;
-      padding: 0;
-    }
-    header, nav {
-      background-color: #1DB954; /* Spotify-like green */
-      color: white;
-      padding: 1rem;
-    }
-    nav a {
-      color: white;
-      margin-right: 1rem;
-      text-decoration: none;
-    }
-    main {
-      padding: 1rem;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 1rem;
-    }
-    th, td {
-      border: 1px solid #ccc;
-      padding: 0.5rem;
-      text-align: left;
-    }
-    th {
-      background-color: #f4f4f4;
-    }
-  </style>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>My Spotify Playlist Manager (Proof of Concept)</title>
+    <link rel="stylesheet" href="/styles/page.css" />
+  </head>
+  <body>
+    <aside class="sidebar">
+      <a href="index.html">Home</a>
+      <a href="playlist1.html">Playlist 1</a>
+      
+      <svg class = "icon">
+        <use xlink:href="/icons/app-icons.svg#playlist" />
+      </svg>
+    </aside>
     <header>
-            <img src="spotifylogo.png" alt="Spotify Logo" width="100" />
-            <h1> Welcome to Spotify Playlist Manager</h1>
-        </header>
+      <svg class="icon">
+        <use href="/icons/app-icons.svg#spotifylogo" />
+      </svg>
+      <h1>Welcome to Spotify Playlist Manager</h1>
+    </header>
 
-  <nav>
-    <!-- “Playlist1” link points to the section below. -->
-    <a href="playlist1.html">Go to Playlist 1</a>
-    <!-- Add more links here for other playlists or features. -->
-  </nav>
+    <nav>
+      <a href="playlist1.html">Go to Playlist 1</a>
+      <svg
+        class="icon">
+        <use href="/icons/app-icons.svg#playlist" />
+      </svg>
+    </nav>
 
-  <main>
-    <p>This is a simplified proof of concept. In the real application the user will connect to the Spotify Web API to manage their playlists.</p>
-  </main>
-</body>
+    <main>
+      <p>
+        This is a simplified proof of concept. In the real application the user
+        will connect to the Spotify Web API to manage their playlists.
+      </p>
+    </main>
+  </body>
 </html>
