@@ -1,3 +1,33 @@
+:root {
+  --color-background-page: #006400;
+  --color-background-header: #228b22;
+  --color-text: #ffffff;
+  --color-link: #e6e6fa;
+  --color-border: #ccc;
+
+  --spacing-xxs: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 2rem;
+
+  --sidebar-width: 200px;
+
+  --icon-size: 2em;
+}
+.darkmode {
+  --color-background-page: #000000;
+  --color-background-header: #3f423f;
+  --color-text: #ffffff;
+  --color-link: #e6e6fa;
+  --color-border: #ccc;
+
+  --spacing-xxs: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 2rem;
+
+  --sidebar-width: 200px;
+
+  --icon-size: 2em;
+}
 * {
     margin: 0;
     box-sizing: border-box;
@@ -11,63 +41,63 @@
         sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #006400;
-    color: #ffffff;
-    margin-left: 200px;
+    background-color: var(--color-background-page);
+    color: var(--color-text);
+    margin-left: var(--sidebar-width);
     }
     header,
     nav {
-    background-color: #228b22;
-    color: white;
-    padding: 1rem;
+    background-color: var(--color-background-header);
+    color: var(--color-text);
+    padding: var(--spacing-md);
     grid-column: 1 /-1;
     }
     nav a {
-    color: #e6e6fa;
-    margin-right: 1rem;
+    color: var(--color-link);
+    margin-right: var(--spacing-md);
     text-decoration: none;
     }
     main {
-    padding: 1rem;
+    padding: var(--spacing-md);
     grid-column: 1 /span 8;
     }
     table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 1rem;
+    margin-top: var(--spacing-md);
     grid-column: 1 / -1;
     }
     th,
     td {
-    border: 1px solid #ccc;
+    border: 1px solid var(--color-border);
     padding: 0.5rem;
     text-align: left;
     }
     th {
-    background-color: #228b22;
+    background-color: var(--color-background-header);
     }
     .sidebar {
     position: fixed;
     top: 0;
     left: 0;
     bottom: 0;
-    width: 200px;
-    background-color: #228b22;
-    padding: 1rem;
+    width: var(--sidebar-width);
+    background-color: var(--color-background-header);
+    padding: var(--spacing-md);
     }
     .sidebar a {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    color: #e6e6fa;
-    margin-bottom: 1rem;
+    gap: var(--spacing-xxs);
+    color: var(--color-link);
+    margin-bottom: var(--spacing-md);
     text-decoration: none;
     }
 
     svg.icon {  /* images */
     display: inline;
-    height: 2em;
-    width: 2em;
+    height: var(--icon-size);
+    width: var(--icon-size);
     vertical-align: top;
     fill: currentColor;
     }
