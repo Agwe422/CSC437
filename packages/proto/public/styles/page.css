@@ -35,89 +35,102 @@
   img {
     max-width: 100%;
   }
-    body {
-    line-height: 1.5;
-    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
-        sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: var(--color-background-page);
-    color: var(--color-text);
-    margin-left: var(--sidebar-width);
-    }
-    header,
-    nav {
-    background-color: var(--color-background-header);
-    color: var(--color-text);
-    padding: var(--spacing-md);
-    grid-column: 1 /-1;
-    }
-    nav a {
-    color: var(--color-link);
-    margin-right: var(--spacing-md);
-    text-decoration: none;
-    }
-    main {
-    padding: var(--spacing-md);
-    grid-column: 1 /span 8;
-    }
-    table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: var(--spacing-md);
-    grid-column: 1 / -1;
-    }
-    th,
-    td {
-    border: 1px solid var(--color-border);
-    padding: 0.5rem;
-    text-align: left;
-    }
-    th {
-    background-color: var(--color-background-header);
-    }
-    .sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    width: var(--sidebar-width);
-    background-color: var(--color-background-header);
-    padding: var(--spacing-md);
-    }
-    .sidebar a {
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-xxs);
-    color: var(--color-link);
-    margin-bottom: var(--spacing-md);
-    text-decoration: none;
-    }
+body {
+line-height: 1.5;
+font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+    sans-serif;
+margin: 0;
+padding: 0;
+background-color: var(--color-background-page);
+color: var(--color-text);
+margin-left: var(--sidebar-width);
+}
+header,
+nav {
+background-color: var(--color-background-header);
+color: var(--color-text);
+padding: var(--spacing-md);
+grid-column: 1 /-1;
+}
+nav a {
+color: var(--color-link);
+margin-right: var(--spacing-md);
+text-decoration: none;
+}
+main {
+padding: var(--spacing-md);
+grid-column: 1 /span 8;
+}
+table {
+width: 100%;
+border-collapse: collapse;
+margin-top: var(--spacing-md);
+grid-column: 1 / -1;
+}
+th,
+td {
+border: 1px solid var(--color-border);
+padding: 0.5rem;
+text-align: left;
+}
+th {
+background-color: var(--color-background-header);
+}
+.sidebar {
+position: fixed;
+top: 0;
+left: 0;
+bottom: 0;
+width: var(--sidebar-width);
+background-color: var(--color-background-header);
+padding: var(--spacing-md);
+}
+.sidebar a {
+display: flex;
+align-items: center;
+gap: var(--spacing-xxs);
+color: var(--color-link);
+margin-bottom: var(--spacing-md);
+text-decoration: none;
+}
 
-    svg.icon {  /* images */
-    display: inline;
-    height: var(--icon-size);
-    width: var(--icon-size);
-    vertical-align: top;
-    fill: currentColor;
-    }
-    .page-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: var(--spacing-lg);
-      grid-column: 1/ -1;
-    }
-    .page-header .left,
-    .page-header .middle,
-    .page-header .right {
-      display: flex;
-      align-items: center;
-    }
-    .content-wrapper {
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      grid-auto-rows: auto;           /* rows grow to content height */
-      gap: var(--spacing-md);         /* use your spacing token */
-      padding: var(--spacing-md);     /* optional breathing room */
-    }
+svg.icon {  /* images */
+display: inline;
+height: var(--icon-size);
+width: var(--icon-size);
+vertical-align: top;
+fill: currentColor;
+}
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-lg);
+  grid-column: 1/ -1;
+}
+.page-header .left,
+.page-header .middle,
+.page-header .right {
+  display: flex;
+  align-items: center;
+}
+.content-wrapper {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-auto-rows: auto;           /* rows grow to content height */
+  gap: var(--spacing-md);         /* use your spacing token */
+  padding: var(--spacing-md);     /* optional breathing room */
+}
+#theme-switch{
+  height: 50px;
+  width: 50px;
+  padding: 0;
+  border-radius: 50%;
+  background-color: var(--color-background-page);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+}
