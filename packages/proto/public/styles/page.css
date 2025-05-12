@@ -134,3 +134,15 @@ fill: currentColor;
   top: 20px;
   right: 20px;
 }
+#theme-switch svg{
+  fill: var(--color-background-header);
+}
+#theme-switch svg:last-child{
+  display: none;
+}
+.darkmode #theme-switch svg:first-child{
+  display: none;
+}
+.darkmode #theme-switch svg:last-child{
+  display: block;
+}
