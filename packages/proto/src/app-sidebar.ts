@@ -1,5 +1,5 @@
-import { LitElement, html, css } from 'https://unpkg.com/lit?module';
-import { define } from 'https://unpkg.com/@calpoly/mustang?module';
+import { LitElement, html, css } from 'lit';
+import { define } from '@calpoly/mustang';
 
 class AppSidebarElement extends LitElement {
   static styles = css`
