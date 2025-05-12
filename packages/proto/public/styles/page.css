@@ -76,24 +76,6 @@ text-align: left;
 th {
 background-color: var(--color-background-header);
 }
-.sidebar {
-position: fixed;
-top: 0;
-left: 0;
-bottom: 0;
-width: var(--sidebar-width);
-background-color: var(--color-background-header);
-padding: var(--spacing-md);
-}
-.sidebar a {
-display: flex;
-align-items: center;
-gap: var(--spacing-xxs);
-color: var(--color-link);
-margin-bottom: var(--spacing-md);
-text-decoration: none;
-}
-
 svg.icon {  /* images */
 display: inline;
 height: var(--icon-size);
@@ -117,9 +99,9 @@ fill: currentColor;
 .content-wrapper {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  grid-auto-rows: auto;           /* rows grow to content height */
-  gap: var(--spacing-md);         /* use your spacing token */
-  padding: var(--spacing-md);     /* optional breathing room */
+  grid-auto-rows: auto;         
+  gap: var(--spacing-md);        
+  padding: var(--spacing-md);     
 }
 #theme-switch{
   height: 50px;

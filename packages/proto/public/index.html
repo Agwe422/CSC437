@@ -1,20 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <script type="module" src="app-sidebar.js"></script>
+    <app-sidebar></app-sidebar>
     <meta charset="UTF-8" />
     <title>My Spotify Playlist Manager (Proof of Concept)</title>
     <link rel="stylesheet" href="/styles/page.css" />
     <script type="text/javascript" src="darkmode.js" defer></script>
   </head>
   <body>
-    <aside class="sidebar">
-      <a href="index.html">Home</a>
-      <a href="playlist1.html">Playlist 1
-        <svg class = "icon">
-          <use xlink:href="/icons/app-icons.svg#playlist" />
-        </svg>
-      </a>
-    </aside>
+    <app-sidebar></app-sidebar>
     <div class="content-wrapper">
     <header class="page-header">
       <button id="theme-switch">
