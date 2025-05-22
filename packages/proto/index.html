@@ -51,7 +51,7 @@
     </header>
 
     <nav>
-      <a class="spotify-login-btn" href="https://accounts.spotify.com/authorize?client_id=0d5b4043cc934147973074e15d1f2b0c&response_type=token&redirect_uri=https://jhall61.csse.dev/&scope=playlist-read-private%20playlist-modify-public%20playlist-modify-private">Log in with Spotify</a>
+      <a class="spotify-login-btn" href="/auth/login">Log in with Spotify</a>
       <a href="playlist1.html">Go to Playlist 1
       <svg
         class="icon">
@@ -70,9 +70,7 @@
     async function loadUserPlaylists() {
       const token = sessionStorage.getItem('spotify_token');
       if (!token) return;
-      const res = await fetch('https://api.spotify.com/v1/me/playlists', {
-        headers: { 'Authorization': `Bearer ${token}` }
-      });
+      const res = await fetch('/api/playlists');
       if (!res.ok) {
         document.getElementById('playlists').innerHTML = '<p>Failed to load playlists.</p>';
         return;
@@ -92,8 +90,6 @@
       container.innerHTML = '';
       container.appendChild(ul);
     }
-    // After login you should store the access token:
-    // sessionStorage.setItem('spotify_token', '<ACCESS_TOKEN>');
     loadUserPlaylists();
   </script>
   </body>
