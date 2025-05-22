@@ -25,15 +25,6 @@
     <script type="module" src="/src/darkmode.ts" defer></script>
   </head>
   <body>
-    <script>
-      const hash = window.location.hash.substring(1);
-      const params = new URLSearchParams(hash);
-      const token = params.get('access_token');
-      if (token) {
-        sessionStorage.setItem('spotify_token', token);
-        history.replaceState(null, '', window.location.pathname);
-      }
-    </script>
     <app-sidebar></app-sidebar>
     <div class="content-wrapper">
     <header class="page-header">
@@ -68,11 +59,15 @@
   </div>
   <script>
     async function loadUserPlaylists() {
-      const token = sessionStorage.getItem('spotify_token');
-      if (!token) return;
       const res = await fetch('/api/playlists');
+      if (res.status === 401) {
+        document.getElementById('playlists').innerHTML =
+          '<p>Please <a href="/auth/login">log in with Spotify</a> to view your playlists.</p>';
+        return;
+      }
       if (!res.ok) {
-        document.getElementById('playlists').innerHTML = '<p>Failed to load playlists.</p>';
+        document.getElementById('playlists').innerHTML =
+          '<p>Failed to load playlists.</p>';
         return;
       }
       const data = await res.json();
