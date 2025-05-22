@@ -21,10 +21,34 @@
       .spotify-login-btn:hover {
         background-color: #1ED760;
       }
+      .playlist-card {
+        display: inline-block;
+        width: 200px;
+        margin: 0.5rem;
+        padding: 0.5rem;
+        background: var(--color-background-card, #222);
+        color: var(--color-text-inverted, #fff);
+        border-radius: 4px;
+        text-align: center;
+      }
+      .playlist-card img {
+        width: 100%;
+        height: auto;
+        border-radius: 4px;
+      }
     </style>
     <script type="module" src="/src/darkmode.ts" defer></script>
   </head>
   <body>
+    <script>
+      const hash = window.location.hash.substring(1);
+      const params = new URLSearchParams(hash);
+      const token = params.get('access_token');
+      if (token) {
+        sessionStorage.setItem('spotify_token', token);
+        history.replaceState(null, '', window.location.pathname);
+      }
+    </script>
     <app-sidebar></app-sidebar>
     <div class="content-wrapper">
     <header class="page-header">
@@ -42,7 +66,7 @@
     </header>
 
     <nav>
-      <a class="spotify-login-btn" href="https://accounts.spotify.com/authorize?client_id=0d5b4043cc934147973074e15d1f2b0c&response_type=code&redirect_uri=https://jhall61.csse.dev/&scope=playlist-read-private%20playlist-modify-public%20playlist-modify-private">Log in with Spotify</a>
+      <a class="spotify-login-btn" href="https://accounts.spotify.com/authorize?client_id=0d5b4043cc934147973074e15d1f2b0c&response_type=token&redirect_uri=https://jhall61.csse.dev/&scope=playlist-read-private%20playlist-modify-public%20playlist-modify-private">Log in with Spotify</a>
       <a href="playlist1.html">Go to Playlist 1
       <svg
         class="icon">
@@ -52,11 +76,39 @@
     </nav>
 
     <main>
-      <p>
-        This is a simplified proof of concept. In the real application the user
-        will connect to the Spotify Web API to manage their playlists.
-      </p>
+      <section id="playlists">
+        <p>Loading your playlists…</p>
+      </section>
     </main>
   </div>
+  <script>
+    async function loadUserPlaylists() {
+      const token = sessionStorage.getItem('spotify_token');
+      if (!token) return;
+      const res = await fetch('https://api.spotify.com/v1/me/playlists', {
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+      if (!res.ok) {
+        document.getElementById('playlists').innerHTML = '<p>Failed to load playlists.</p>';
+        return;
+      }
+      const data = await res.json();
+      const container = document.getElementById('playlists');
+      container.innerHTML = '';
+      data.items.forEach(pl => {
+        const card = document.createElement('div');
+        card.className = 'playlist-card';
+        card.innerHTML = `
+          <img src="${pl.images[0]?.url || ''}" alt="${pl.name}" />
+          <h3>${pl.name}</h3>
+          <p>${pl.tracks.total} tracks</p>
+        `;
+        container.appendChild(card);
+      });
+    }
+    // After login you should store the access token:
+    // sessionStorage.setItem('spotify_token', '<ACCESS_TOKEN>');
+    loadUserPlaylists();
+  </script>
   </body>
 </html>
