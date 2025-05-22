@@ -21,21 +21,6 @@
       .spotify-login-btn:hover {
         background-color: #1ED760;
       }
-      .playlist-card {
-        display: inline-block;
-        width: 200px;
-        margin: 0.5rem;
-        padding: 0.5rem;
-        background: var(--color-background-card, #222);
-        color: var(--color-text-inverted, #fff);
-        border-radius: 4px;
-        text-align: center;
-      }
-      .playlist-card img {
-        width: 100%;
-        height: auto;
-        border-radius: 4px;
-      }
     </style>
     <script type="module" src="/src/darkmode.ts" defer></script>
   </head>
@@ -94,17 +79,18 @@
       }
       const data = await res.json();
       const container = document.getElementById('playlists');
-      container.innerHTML = '';
+      if (data.items.length === 0) {
+        container.innerHTML = '<p>No playlists found.</p>';
+        return;
+      }
+      const ul = document.createElement('ul');
       data.items.forEach(pl => {
-        const card = document.createElement('div');
-        card.className = 'playlist-card';
-        card.innerHTML = `
-          <img src="${pl.images[0]?.url || ''}" alt="${pl.name}" />
-          <h3>${pl.name}</h3>
-          <p>${pl.tracks.total} tracks</p>
-        `;
-        container.appendChild(card);
+        const li = document.createElement('li');
+        li.textContent = pl.name;
+        ul.appendChild(li);
       });
+      container.innerHTML = '';
+      container.appendChild(ul);
     }
     // After login you should store the access token:
     // sessionStorage.setItem('spotify_token', '<ACCESS_TOKEN>');
