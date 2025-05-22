@@ -5,8 +5,23 @@
     <meta charset="UTF-8" />
     <title>My Spotify Playlist Manager (Proof of Concept)</title>
     <link rel="stylesheet" href="/styles/page.css" />
-    <script type="text/javascript" src="/src/darkmode.ts" defer></script>
-    <script type="module" crossorigin src="/assets/app-sidebar-BVOi8ZR2.js"></script>
+    <style>
+      .spotify-login-btn {
+        display: inline-block;
+        background-color: #1DB954;
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 1rem;
+        transition: background-color 0.2s ease;
+      }
+      .spotify-login-btn:hover {
+        background-color: #1ED760;
+      }
+    </style>
+    <script type="module" crossorigin src="/assets/darkmode-Du2TWbuW.js"></script>
   </head>
   <body>
     <app-sidebar></app-sidebar>
@@ -26,6 +41,7 @@
     </header>
 
     <nav>
+      <a class="spotify-login-btn" href="https://accounts.spotify.com/authorize?client_id=0d5b4043cc934147973074e15d1f2b0c&response_type=code&redirect_uri=http%3A%2F%2F127.0.0.1%3A5173%2Fcallback&scope=playlist-read-private%20playlist-modify-public%20playlist-modify-private">Log in with Spotify</a>
       <a href="playlist1.html">Go to Playlist 1
       <svg
         class="icon">

@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <title>Playlist 1 - Spotify Playlist Manager</title>
   <link rel="stylesheet" href="/styles/page.css" />
-  <script type="text/javascript" src="/src/darkmode.ts" defer></script>
-  <script type="module" crossorigin src="/assets/app-sidebar-BVOi8ZR2.js"></script>
+  <script type="module" crossorigin src="/assets/playlist1-DDGpWue4.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/darkmode-Du2TWbuW.js">
 </head>
 <body>
   <app-sidebar></app-sidebar>
@@ -30,42 +30,7 @@
   <main>
     <section id="playlist1">
       <h2>Playlist 1</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th>Date Added</th>
-            <th>Duration</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Brazil</td>
-            <td>2 weeks ago</td>
-            <td>4:12</td>
-          </tr>
-          <tr>
-            <td>Hell N Back (feat. Summer Walker)</td>
-            <td>2 weeks ago</td>
-            <td>3:15</td>
-          </tr>
-          <tr>
-            <td>Sultans of Swing</td>
-            <td>2 weeks ago</td>
-            <td>5:49</td>
-          </tr>
-          <tr>
-            <td>Like Him (feat. Lola Young)</td>
-            <td>2 weeks ago</td>
-            <td>3:38</td>
-          </tr>
-          <tr>
-            <td>New Perspective</td>
-            <td>2 weeks ago</td>
-            <td>4:17</td>
-          </tr>
-        </tbody>
-      </table>
+      <playlist-song-list src="/data/playlist1.json"></playlist-song-list>
     </section>
   </main>
 </div>
