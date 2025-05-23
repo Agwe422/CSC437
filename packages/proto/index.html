@@ -42,7 +42,7 @@
     </header>
 
     <nav>
-      <a class="spotify-login-btn" href="http://jhall61.csse.dev:3000/auth/login">Log in with Spotify</a>
+      <a id="spotify-login-btn" class="spotify-login-btn" href="#">Log in with Spotify</a>
       <a href="playlist1.html">Go to Playlist 1
       <svg
         class="icon">
@@ -87,6 +87,40 @@
     }
     loadUserPlaylists();
   </script>
+<script type="module">
+  // Read values from .env via Vite
+  const CLIENT_ID = import.meta.env.VITE_SPOTIFY_CLIENT_ID;
+  const REDIRECT_URI = import.meta.env.VITE_REDIRECT_URI || `${window.location.origin}/auth/callback`;
+  const SCOPES = 'playlist-read-private playlist-modify-public playlist-modify-private';
+  const STATE_KEY = 'spotify_auth_state';
+
+  function generateRandomString(length = 16) {
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let result = '';
+    const array = new Uint8Array(length);
+    crypto.getRandomValues(array);
+    array.forEach(i => result += chars[i % chars.length]);
+    return result;
+  }
+
+  function buildAuthURL() {
+    const state = generateRandomString();
+    sessionStorage.setItem(STATE_KEY, state);
+    const params = new URLSearchParams({
+      response_type: 'code',
+      client_id: CLIENT_ID,
+      scope: SCOPES,
+      redirect_uri: REDIRECT_URI,
+      state
+    });
+    return `https://accounts.spotify.com/authorize?${params.toString()}`;
+  }
+
+  document.getElementById('spotify-login-btn').addEventListener('click', e => {
+    e.preventDefault();
+    window.location.href = buildAuthURL();
+  });
+</script>
   </body>
 </html>
 <!-- test -->
