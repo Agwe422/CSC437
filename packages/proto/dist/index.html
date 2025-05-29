@@ -21,7 +21,8 @@
         background-color: #1ED760;
       }
     </style>
-    <script type="module" crossorigin src="/assets/darkmode-Du2TWbuW.js"></script>
+    <script type="module" crossorigin src="/assets/main-DBdf_iYl.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/darkmode-Du2TWbuW.js">
   </head>
   <body>
     <app-sidebar></app-sidebar>
@@ -41,7 +42,7 @@
     </header>
 
     <nav>
-      <a class="spotify-login-btn" href="https://accounts.spotify.com/authorize?client_id=0d5b4043cc934147973074e15d1f2b0c&response_type=code&redirect_uri=https://jhall61.csse.dev/callback&scope=playlist-read-private%20playlist-modify-public%20playlist-modify-private">Log in with Spotify</a>
+      <a id="spotify-login-btn" class="spotify-login-btn" href="#">Log in with Spotify</a>
       <a href="playlist1.html">Go to Playlist 1
       <svg
         class="icon">
@@ -51,11 +52,41 @@
     </nav>
 
     <main>
-      <p>
-        This is a simplified proof of concept. In the real application the user
-        will connect to the Spotify Web API to manage their playlists.
-      </p>
+      <section id="playlists">
+        <p>Loading your playlists…</p>
+      </section>
     </main>
   </div>
+  <script>
+    async function loadUserPlaylists() {
+      const res = await fetch('/api/playlists');
+      if (res.status === 401) {
+        document.getElementById('playlists').innerHTML =
+          '<p>Please <a href="/auth/login">log in with Spotify</a> to view your playlists.</p>';
+        return;
+      }
+      if (!res.ok) {
+        document.getElementById('playlists').innerHTML =
+          '<p>Failed to load playlists.</p>';
+        return;
+      }
+      const data = await res.json();
+      const container = document.getElementById('playlists');
+      if (data.items.length === 0) {
+        container.innerHTML = '<p>No playlists found.</p>';
+        return;
+      }
+      const ul = document.createElement('ul');
+      data.items.forEach(pl => {
+        const li = document.createElement('li');
+        li.textContent = pl.name;
+        ul.appendChild(li);
+      });
+      container.innerHTML = '';
+      container.appendChild(ul);
+    }
+    loadUserPlaylists();
+  </script>
   </body>
 </html>
+ 

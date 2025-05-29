@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <script type="module" src="/src/app-sidebar.ts"></script>
+    <script type="module" src="/src/spotify.ts"></script>
     <app-sidebar></app-sidebar>
     <meta charset="UTF-8" />
     <title>My Spotify Playlist Manager (Proof of Concept)</title>
@@ -87,41 +88,6 @@
     }
     loadUserPlaylists();
   </script>
-<script type="module">
-  // Read values from .env via Vite
-  const CLIENT_ID = import.meta.env.VITE_SPOTIFY_CLIENT_ID;
-  const REDIRECT_URI = import.meta.env.VITE_REDIRECT_URI || `${window.location.origin}/auth/callback`;
-  const SCOPES = 'playlist-read-private playlist-modify-public playlist-modify-private';
-  const STATE_KEY = 'spotify_auth_state';
-
-  function generateRandomString(length = 16) {
-    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    let result = '';
-    const array = new Uint8Array(length);
-    crypto.getRandomValues(array);
-    array.forEach(i => result += chars[i % chars.length]);
-    return result;
-  }
-
-  function buildAuthURL() {
-    const state = generateRandomString();
-    sessionStorage.setItem(STATE_KEY, state);
-    const params = new URLSearchParams({
-      response_type: 'code',
-      client_id: CLIENT_ID,
-      scope: SCOPES,
-      redirect_uri: REDIRECT_URI,
-      state
-    });
-    return `https://accounts.spotify.com/authorize?${params.toString()}`;
-  }
-
-  document.getElementById('spotify-login-btn').addEventListener('click', e => {
-    e.preventDefault();
-    window.location.href = buildAuthURL();
-  });
-</script>
   </body>
 </html>
-<!-- test -->
  
