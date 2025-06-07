@@ -26,6 +26,7 @@ var import_express = __toESM(require("express"));
 var import_express_session = __toESM(require("express-session"));
 var import_node_fetch = __toESM(require("node-fetch"));
 var import_path = __toESM(require("path"));
+var import_promises = __toESM(require("node:fs/promises"));
 const app = (0, import_express.default)();
 const port = process.env.PORT || 3e3;
 const staticDir = import_path.default.join(__dirname, "../../proto/dist");
@@ -185,6 +186,12 @@ app.get("/auth/refresh_token", async (req, res) => {
 });
 app.get(/^\/(?!api\/|auth\/).*/, (_req, res) => {
   res.sendFile(import_path.default.join(staticDir, "index.html"));
+});
+app.use("/app", (req, res) => {
+  const indexHtml = import_path.default.resolve(staticDir, "index.html");
+  import_promises.default.readFile(indexHtml, { encoding: "utf8" }).then(
+    (html) => res.send(html)
+  );
 });
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);

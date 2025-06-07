@@ -1,0 +1,41 @@
+
+> server@1.0.0 start:proto
+> cross-env STATIC=../proto/dist npm run start
+
+
+> server@1.0.0 start
+> npm run build && npm run start:node
+
+
+> server@1.0.0 build
+> npx etsc
+
+Using default config
+Built in: 53.803ms
+
+> server@1.0.0 start:node
+> node dist/index.js
+
+Server running at http://localhost:3000
+Terminated
+npm error Lifecycle script `start:node` failed with error:
+npm error code 143
+npm error path /home/jhall61/CSC437/packages/server
+npm error workspace server@1.0.0
+npm error location /home/jhall61/CSC437/packages/server
+npm error command failed
+npm error command sh -c node dist/index.js
+npm error Lifecycle script `start` failed with error:
+npm error code 143
+npm error path /home/jhall61/CSC437/packages/server
+npm error workspace server@1.0.0
+npm error location /home/jhall61/CSC437/packages/server
+npm error command failed
+npm error command sh -c npm run build && npm run start:node
+npm error Lifecycle script `start:proto` failed with error:
+npm error code 143
+npm error path /home/jhall61/CSC437/packages/server
+npm error workspace server@1.0.0
+npm error location /home/jhall61/CSC437/packages/server
+npm error command failed
+npm error command sh -c cross-env STATIC=../proto/dist npm run start

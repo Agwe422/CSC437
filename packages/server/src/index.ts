@@ -11,6 +11,11 @@ import session from 'express-session';
 import fetch from 'node-fetch';
 import path from 'path';
 
+
+import fs from "node:fs/promises";
+
+
+
 declare module 'express-session' {
   // Extend SessionData to include our custom fields
   interface SessionData {
@@ -220,6 +225,15 @@ app.get('/auth/refresh_token', async (req: Request, res: Response) => {
 app.get(/^\/(?!api\/|auth\/).*/, (_req, res) => {
   res.sendFile(path.join(staticDir, 'index.html'));
 });
+
+
+app.use("/app", (req: Request, res: Response) => {
+  const indexHtml = path.resolve(staticDir, "index.html");
+  fs.readFile(indexHtml, { encoding: "utf8" }).then((html) =>
+    res.send(html)
+  );
+});
+
 
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);

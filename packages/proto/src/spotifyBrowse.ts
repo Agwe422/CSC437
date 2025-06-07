@@ -31,7 +31,7 @@ const APIController = (function() {
     const response = await fetch(
       `https://api.spotify.com/v1/browse/categories?locale=sv_US`,
       {
-        method: 'GET',
+        method: 'GExT',
         headers: { Authorization: 'Bearer ' + token }
       }
     );

@@ -1,0 +1,31 @@
+:root {
+  --color-background-page: #006400;
+  --color-background-header: #228b22;
+  --color-text: #ffffff;
+  --color-link: #e6e6fa;
+  --color-border: #ccc;
+
+  --spacing-xxs: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 2rem;
+
+  --sidebar-width: 200px;
+
+  --icon-size: 2em;
+}
+
+.darkmode {
+  --color-background-page: #000000;
+  --color-background-header: #3f423f;
+  --color-text: #ffffff;
+  --color-link: #e6e6fa;
+  --color-border: #ccc;
+
+  --spacing-xxs: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 2rem;
+
+  --sidebar-width: 200px;
+
+  --icon-size: 2em;
+}
