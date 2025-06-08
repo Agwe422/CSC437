@@ -2,23 +2,21 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>My SPA</title>
-  <!-- keep your CSS links here -->
-  <link rel="stylesheet" href="/styles/reset.css" />
-  <link rel="stylesheet" href="/styles/page.css" />
+  <meta name="viewport" content="width=device-width, initial‐scale=1.0" />
+  <title>My Spotify SPA</title>
 </head>
 <body>
-  <mu-history provides="myapp:history">
-    <mu-auth provides="myapp:auth" redirect="/login">
-      <mu-store provides="myapp:model">
+  <mu-history provides="spotify:history">
+    <mu-auth provides="spotify:auth" redirect="/login.html">
+      <mu-store provides="spotify:model">
         <article class="page">
-          <my-header></my-header>
+          <blazing-header></blazing-header>
           <mu-switch></mu-switch>
         </article>
       </mu-store>
     </mu-auth>
   </mu-history>
+
   <script type="module" src="/src/main.ts"></script>
 </body>
 </html>
