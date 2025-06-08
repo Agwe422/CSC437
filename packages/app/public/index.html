@@ -1,32 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>My Spotify Playlist Manager (SPA)</title>
-
-    <!-- your global CSS -->
-    <link rel="stylesheet" href="/styles/reset.css" />
-    <link rel="stylesheet" href="/styles/tokens.css" />
-    <link rel="stylesheet" href="/styles/page.css" />
-
-    <!-- dark‐mode toggle if you have one -->
-    <script type="module" src="/src/darkmode.ts" defer></script>
-
-    <!-- SPA entry point -->
-    <script type="module" src="/src/main.ts" defer></script>
-  </head>
-
-  <body>
-    <mu-history provides="spotifyplaylist:history">
-      <mu-auth provides="spotifyplaylist:auth" redirect="/login.html">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>My SPA</title>
+  <!-- keep your CSS links here -->
+  <link rel="stylesheet" href="/styles/reset.css" />
+  <link rel="stylesheet" href="/styles/page.css" />
+</head>
+<body>
+  <mu-history provides="myapp:history">
+    <mu-auth provides="myapp:auth" redirect="/login">
+      <mu-store provides="myapp:model">
         <article class="page">
-          <!-- header always visible -->
-          <spotifyplaylist-header></spotifyplaylist-header>
-
-          <!-- Mustang will swap views here -->
+          <my-header></my-header>
           <mu-switch></mu-switch>
         </article>
-      </mu-auth>
-    </mu-history>
-  </body>
+      </mu-store>
+    </mu-auth>
+  </mu-history>
+  <script type="module" src="/src/main.ts"></script>
+</body>
 </html>

@@ -1,22 +1,22 @@
-import {
-  Auth,
-  define,
-  History,
-  Switch
-} from "@calpoly/mustang";
+// src/main.ts
+import { Auth, History, Switch, Store, define } from "@calpoly/mustang";
 import { html } from "lit";
-
-// your header component:
-import { HeaderElement } from "./components/spotifyplaylist-header.ts";
-
-// your views (we’ll stub one here):
+import { Msg } from "./messages.ts";
+import { Model, init } from "./model.ts";
+import update from "./update.ts";
+import { TracksViewElement } from "./views/tracks-view.ts";
 import { PlaylistsViewElement } from "./views/playlists-view.ts";
+import { HeaderElement } from "./components/blazing-header.ts";
 
-// 2.1) define your app’s routes
+// 1) Define your routes for <mu-switch>
 const routes: Switch.Route[] = [
   {
     path: "/app/playlists",
     view: () => html`<playlists-view></playlists-view>`
+  },
+  {
+    path: "/app/tracks/:playlistId",
+    view: (params) => html`<tracks-view playlist-id=${params.playlistId}></tracks-view>`
   },
   {
     path: "/app",
@@ -28,18 +28,24 @@ const routes: Switch.Route[] = [
   }
 ];
 
-// 2.2) wire up all custom elements
 define({
-  "mu-auth":     Auth.Provider,
-  "mu-history":  History.Provider,
-  // note that Switch needs your routes + history/auth tokens
-  "mu-switch":   class AppSwitch extends Switch.Element {
+  // Mustang providers
+  "mu-auth": Auth.Provider,
+  "mu-history": History.Provider,
+  "mu-store": class AppStore extends Store.Provider<Model, Msg> {
     constructor() {
-      super(routes, "spotifyplaylist:history", "spotifyplaylist:auth");
+      // update fn, initial model, auth-provides token
+      super(update, init, "myapp:auth");
     }
   },
-  // your header + any other UI components:
-  "spotifyplaylist-header": HeaderElement,
-  // your page-level views:
-  "playlists-view":          PlaylistsViewElement
+  "mu-switch": class AppSwitch extends Switch.Element {
+    constructor() {
+      // routes, history-provides, auth-provides
+      super(routes, "myapp:history", "myapp:auth");
+    }
+  },
+  // your custom elements
+  "my-header": HeaderElement,
+  "playlists-view": PlaylistsViewElement,
+  "tracks-view": TracksViewElement
 });
